@@ -2,7 +2,7 @@
 
 
 //levels avialable in the game
-const levels = {'easy' : {'time':7, 'wordCount': 5}, 'medium' : {'time':5, 'wordCount': 10}, 'hard' : {'time':3, 'wordCount': 15}};
+const levels = {'easy' : {'time':7, 'wordCount': 5, 'ins':'is not'}, 'medium' : {'time':5, 'wordCount': 10, 'ins':'is'}, 'hard' : {'time':3, 'wordCount': 15, 'ins':'is'}};
 //Words to be used in the game
 const wordsArray = [ 'UWEM', 'OSSAI', 'NOYE', 'SHOLA', 'SEGUN', 'OLADOTUN', 'EMENUM', 'CHUKS', 'OLAYEMI', 'CHINEYE', 'NGOZI', 'TAYE', 'CHINEDU', 'KELECHI', 'EKENEM', 'SHADE', 'UZOR', 'OGBODO', 'EMEYAZIA', 'ETUKOMENI', 'ODION', 'CHUKWUDI', 'ISHIOMA', 'CHIOMA', 'YUSUF', 'UDOKACHUKWU'];
 //color aarray for the words
@@ -19,7 +19,7 @@ let currentLevel, isPlaying, time, score, userScore, interval;
 //This starts the coundown b4 a word is shown
 function startWordCountDown(){
     let i = 0
-    let intr =['This level is case Sensitive', 'You have 5seconds', 'START']
+    let intr =[`This level ${currentLevel.ins} case Sensitive`, `YOU HAVE ${currentLevel.time}seconds`, 'START']
     let word = document.querySelector('#word-container h1')
     let countdownword = setInterval(() => {
         // 
@@ -31,10 +31,14 @@ function startWordCountDown(){
         {
             word.style.fontSize = '150%'
         }
+        word.style.color = colors[i]
         word.innerHTML = intr[i];
+        
+        if(i==2){ userInput.disabled = false;
+            userInput.focus();}
         if (i === 3) {clearInterval(countdownword); showWord(); gameInit(); }
         i++;
-    }, 1000);
+    }, 1500);
 }
 //This is responsible for showing a new word in the game
 function showWord ()
@@ -241,24 +245,18 @@ const levelsButtons = document.querySelector('#levels-container').children;
     for (let i = 0; i<levelsButtons.length; i++)
     {
         levelsButtons[i].addEventListener('click', function () {
+            let that = this.innerText.toLowerCase();
+            selectLevel(that)
             console.log(this);
             console.log(this.parentNode);
             this.style.animation = 'scale 0.5s infinite ease-in'
            makeInvisible(this.parentNode);
            userInput.disabled = true;
                 startWordCountDown();
-                
-                
-           
-            setTimeout(() => {
-                userInput.disabled = false;
-                userInput.focus();
-                
-            }, 3000);
             
-            let that = this.innerText.toLowerCase(); //this takes the text of the selected level
+            // let that = this.innerText.toLowerCase(); //this takes the text of the selected level
 
-            selectLevel(that) // 
+             // 
         })
     }
 // Adds animation when the start button is clicked
@@ -285,7 +283,7 @@ function endGame (txttt)
     clearInterval(interval);
     setTimeout(() => {
         location.reload();
-    }, 1500);
+    }, 2500);
     
 }
 
