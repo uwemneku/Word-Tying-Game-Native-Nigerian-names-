@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <!-- <div id="position"></div> -->
+    <!-- the canvas element handles the floating circles -->
+    <canvas></canvas>
+   <div id="game">
+      <div id="word-container"><h1>EMEYAZIA</h1></div>
+      <!-- TEXT BOX -->
+     
+   </div>
+    <button id="skip-button">SKIP</button>
+    
+    <!--UI for time and score -->
+    <div id="records">
+      <div id="time-bar" class="bar"> <div></div></div>
+      <input
+      type="text"
+      autocomplete="off"
+      placeholder="start typing...."
+      name="user-input"
+      id="text-box"
+      autofocus
+    />
+      <div id="score-bar"  class="bar"><div></div></div>
+    </div>
+
+    <section id="levels-container">
+      <h1>Choose a Level</h1>
+      <button id="easy-button">
+        EASY
+      </button >
+      <button id="medium-button">
+        MEDIUM
+      </button>
+      <button id="hard-button">
+        HARD
+      </button>
+    </section>
+
+    <div id="start-screen">
+      <p></p>
+      <button id="start-button">START <br> GAME</button>
+    </div>
+  
+    <script   src="./js/app.js"></script>
+    
+  </body>
+</html>
