@@ -1,4 +1,6 @@
-
+window.addEventListener('load', run)
+function run()
+{
 
 
 //levels avialable in the game
@@ -56,7 +58,7 @@ function showWord ()
    
     let index1 = Math.floor(Math.random() * colors.length);
     wordsOnScreen.style.color =  colors[index1];
-    console.log(colors[index1]);
+    
     
 
 }
@@ -92,7 +94,7 @@ function startGame ()
     showWord();
     let stopTime = setInterval(TimeCountDown, 500);
     setTimeout(() => {
-        console.log('it is time');
+        
           
       }, currentLevel.time*1000);
 
@@ -125,7 +127,7 @@ function TimeCountDown()
     if (time < currentLevel.time)
     {
         time +=  0.5;
-        console.log(time);
+        
         
         updateBar(timeBar, currentLevel.time, time);
         
@@ -265,8 +267,7 @@ const levelsButtons = document.querySelector('#levels-container').children;
         levelsButtons[i].addEventListener('click', function () {
             let that = this.innerText.toLowerCase();
             selectLevel(that)
-            console.log(this);
-            console.log(this.parentNode);
+           
             this.style.animation = 'scale 0.5s infinite ease-in'
            makeInvisible(this.parentNode);
            userInput.disabled = true;
@@ -280,7 +281,7 @@ const levelsButtons = document.querySelector('#levels-container').children;
 // Adds animation when the start button is clicked
 document.getElementById('start-button')
 .addEventListener('click', function () {
-    console.log(this);
+   
     this.style.animation = 'clicked 0.5s ease-in-out 1 forwards'
     makeInvisible(this.parentNode);
     
@@ -297,7 +298,7 @@ function endGame (txttt)
     endtext.style.animation = 'textShadow 1s infinite ease-in'
     document.querySelector('body').appendChild(endScreen)
     
-    console.log(endScreen);
+  
     clearInterval(interval);
     setTimeout(() => {
         location.reload();
@@ -312,11 +313,11 @@ createCircles();
 
 function createCircles()
 {const canvas = document.querySelector('canvas')
-// canvas.width = window.innerWidth;
+canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 var context = canvas.getContext('2d');
 window.addEventListener('resize', () => {
-    // canvas.width = window.innerWidth;
+    canvas.width = window.innerWidth;
     canvas.height = window.innerHeight; 
 })
 
@@ -396,3 +397,4 @@ animate();}
 
 }
 
+}
