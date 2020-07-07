@@ -98,6 +98,28 @@ opacity: 0;
     top: 250px;
     /* visibility: visible; */
 }
+#skip-button:focus{
+    animation: roll 1s ease-out alternate;
+}
+
+@keyframes roll {
+    0%{
+        box-shadow:  0px 0px 0px 10px #ffffff;
+    }
+    25% {
+        box-shadow:  0px 0px 0px 5px #ffffff;
+    }
+    50% {
+        box-shadow:  0px 0px 0px 10px #ffffff;
+    }
+    75% {
+        box-shadow:  0px 0px 0px 5px #ffffff;
+    }
+    100% {
+        box-shadow:  0px 0px 0px 0px #ffffff;
+    }
+    
+}
 @keyframes textShadow {
     0%{
         text-shadow:  10px 0px #000000;

@@ -2,7 +2,7 @@
 
 
 //levels avialable in the game
-const levels = {'easy' : {'time':7, 'wordCount': 5, 'ins':'is not'}, 'medium' : {'time':5, 'wordCount': 10, 'ins':'is'}, 'hard' : {'time':3, 'wordCount': 15, 'ins':'is'}};
+const levels = {'easy' : {'time':7, 'wordCount': 5, 'ins':'is not'}, 'medium' : {'time':5, 'wordCount': 10, 'ins':'is not'}, 'hard' : {'time':3, 'wordCount': 15, 'ins':'IS'}};
 //Words to be used in the game
 const wordsArray = [ 'UWEM', 'OSSAI', 'NOYE', 'SHOLA', 'SEGUN', 'OLADOTUN', 'EMENUM', 'CHUKS', 'OLAYEMI', 'CHINEYE', 'NGOZI', 'TAYE', 'CHINEDU', 'KELECHI', 'EKENEM', 'SHADE', 'UZOR', 'OGBODO', 'EMEYAZIA', 'ETUKOMENI', 'ODION', 'CHUKWUDI', 'ISHIOMA', 'CHIOMA', 'YUSUF', 'UDOKACHUKWU'];
 //color aarray for the words
@@ -45,12 +45,27 @@ function showWord ()
 {
     const wordsOnScreen =document.querySelector('#word-container h1');
     let index = Math.floor(Math.random() * wordsArray.length);
-    wordsOnScreen.innerHTML =  wordsArray[index];
+    if (currentLevel === levels.hard)
+    {
+        wordsOnScreen.innerHTML = changeCase(wordsArray[index]);
+    }
+    else
+    {
+        wordsOnScreen.innerHTML =  wordsArray[index];
+    }
+   
     let index1 = Math.floor(Math.random() * colors.length);
     wordsOnScreen.style.color =  colors[index1];
     console.log(colors[index1]);
     
 
+}
+//hard show word
+function changeCase (arrr) {
+    let index = Math.floor(Math.random() * arrr.length);
+    let oldChar = arrr.charAt(index);
+    let newChar = oldChar.toLocaleLowerCase();
+    return arrr.replace(oldChar, newChar);
 }
 //This intializes the game settings all necessary variables
 function gameInit ()
@@ -63,6 +78,9 @@ function gameInit ()
     updateBar(scoreBar, score, userScore);
     document.getElementById('skip-button').addEventListener('click', () => {
         update();
+        let index = Math.floor(Math.random() * colors.length);
+        // document.getElementById('skip-button').style.backgroundColor = colors[index]
+
 })
     startGame();
    
@@ -171,7 +189,7 @@ function matchWords() {
                             }
                             break;
 
-        case levels.medium :   if(wordsOnScreen.innerHTML === userInput.value)
+        case levels.medium :   if(wordsOnScreen.innerHTML.toLocaleLowerCase() === userInput.value.toLocaleLowerCase())
                             {   
                                 
                               
